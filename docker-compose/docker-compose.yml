@@ -1,0 +1,12 @@
+sr:
+  image: ha-service.register:latest
+  ports: 
+    - "8761:8761"
+dispatcher_1:
+  image: ha-dispatcher:latest
+  links: 
+    - sr
+dispatcher_2:
+  image: ha-dispatcher:latest
+  links: 
+    - sr

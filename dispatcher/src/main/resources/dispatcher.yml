@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: dispatcher
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://sr:8761/eureka/

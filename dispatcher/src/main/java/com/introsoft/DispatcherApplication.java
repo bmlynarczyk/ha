@@ -8,8 +8,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 public class DispatcherApplication {
 
-	public static void main(String[] args) {
-		System.setProperty("spring.config.name", "dispatcher");
-		SpringApplication.run(DispatcherApplication.class, args);
-	}
+    public static void main(String[] args) {
+        System.setProperty("spring.config.name", "dispatcher");
+        SpringApplication.run(DispatcherApplication.class, args);
+    }
+
 }
