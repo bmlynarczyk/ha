@@ -10,3 +10,9 @@ dispatcher_2:
   image: ha-dispatcher:latest
   links: 
     - sr
+gateway:
+  image: ha-gateway:latest
+  ports:
+    - "8080:8080"
+  links:
+    - sr

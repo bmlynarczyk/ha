@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DispatcherController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/dispatch")
-    public void dispatch(@RequestParam String value){
+    public void dispatch(@RequestParam(name = "value") String value){
         log.info(value);
     }
 
