@@ -1,18 +1,57 @@
-sr:
-  image: ha-service.register:latest
-  ports: 
-    - "8761:8761"
-dispatcher_1:
-  image: ha-dispatcher:latest
-  links: 
-    - sr
-dispatcher_2:
-  image: ha-dispatcher:latest
-  links: 
-    - sr
-gateway:
-  image: ha-gateway:latest
-  ports:
-    - "8080:8080"
-  links:
-    - sr
+version: "2"
+
+networks:
+  my-net:
+    driver: bridge
+
+services:
+  service-register-a:
+    image: ha-service.register:latest
+    container_name: service-register-a
+    ports:
+      - "8761:8761"
+    networks:
+      - my-net
+    volumes:
+      - ./configs/service-register-a.yml:/config/service-register.yml
+  service-register-b:
+    image: ha-service.register:latest
+    container_name: service-register-b
+    ports:
+      - "8762:8761"
+    networks:
+      - my-net
+    volumes:
+      - ./configs/service-register-b.yml:/config/service-register.yml
+  dispatcher-a:
+    image: ha-dispatcher:latest
+    container_name: dispatcher-a
+    networks:
+      - my-net
+    volumes:
+      - ./configs/dispatcher.yml:/config/dispatcher.yml
+  dispatcher-b:
+    image: ha-dispatcher:latest
+    container_name: dispatcher-b
+    networks:
+      - my-net
+    volumes:
+      - ./configs/dispatcher.yml:/config/dispatcher.yml
+  gateway-a:
+    image: ha-gateway:latest
+    container_name: gateway-a
+    networks:
+      - my-net
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./configs/gateway.yml:/config/gateway.yml
+  gateway-b:
+    image: ha-gateway:latest
+    container_name: gateway-b
+    ports:
+      - "8081:8080"
+    networks:
+      - my-net
+    volumes:
+      - ./configs/gateway.yml:/config/gateway.yml

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: gateway
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://service-register-a:8761/eureka/,http://service-register-b:8761/eureka/
+  instance:
+    preferIpAddress: true
