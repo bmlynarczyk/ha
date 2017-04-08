@@ -15,18 +15,9 @@ services:
       - my-net
     volumes:
       - ./configs/service-registry.yml:/config/service-registry.yml
-  service-a:
+  service:
     image: ha-service:latest
-    container_name: service-a
-    cpuset: 2,3
-    networks:
-      - my-net
-    volumes:
-      - ./configs/service.yml:/config/service.yml
-  service-b:
-    image: ha-service:latest
-    container_name: service-b
-    cpuset: 4,5
+    cpuset: 2,3,4,5
     networks:
       - my-net
     volumes:
