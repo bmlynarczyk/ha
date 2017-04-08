@@ -5,38 +5,39 @@ networks:
     driver: bridge
 
 services:
-  service-register-a:
-    image: ha-service.register:latest
-    container_name: service-register-a
+  service-registry-a:
+    image: ha-service-registry:latest
+    container_name: service-registry-a
     ports:
       - "8761:8761"
     networks:
       - my-net
     volumes:
-      - ./configs/service-register-a.yml:/config/service-register.yml
-  service-register-b:
-    image: ha-service.register:latest
-    container_name: service-register-b
+      - ./configs/service-registry-a.yml:/config/service-registry.yml
+  service-registry-b:
+    image: ha-service-registry:latest
+    container_name: service-registry-b
     ports:
       - "8762:8761"
     networks:
       - my-net
     volumes:
-      - ./configs/service-register-b.yml:/config/service-register.yml
-  dispatcher-a:
-    image: ha-dispatcher:latest
-    container_name: dispatcher-a
+      - ./configs/service-registry-b.yml:/config/service-registry.yml
+
+  service-a:
+    image: ha-service:latest
+    container_name: service-a
     networks:
       - my-net
     volumes:
-      - ./configs/dispatcher.yml:/config/dispatcher.yml
-  dispatcher-b:
-    image: ha-dispatcher:latest
-    container_name: dispatcher-b
+      - ./configs/service.yml:/config/service.yml
+  service-b:
+    image: ha-service:latest
+    container_name: service-b
     networks:
       - my-net
     volumes:
-      - ./configs/dispatcher.yml:/config/dispatcher.yml
+      - ./configs/service.yml:/config/service.yml
   gateway-a:
     image: ha-gateway:latest
     container_name: gateway-a

@@ -13,7 +13,7 @@ HA is farm of services working in one or more networks. Each service is build wi
 HA includes following services:
 
 - Gateway - input endpoint taking HTTP request for processing in system
-- Dispatcher - pass HTTP request to processing in system
+- Service - proccess HTTP request
 - Service Register - allow for service discovery - the brain of scalability
 
 ### Requirements

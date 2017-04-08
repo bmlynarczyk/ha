@@ -1,0 +1,16 @@
+package com.introsoft.service;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+@SpringBootApplication
+@EnableEurekaClient
+public class ServiceApplication {
+
+    public static void main(String[] args) {
+        System.setProperty("spring.config.name", "service");
+        SpringApplication.run(ServiceApplication.class, args);
+    }
+
+}
