@@ -5,6 +5,6 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://service-registry-a:8761/eureka/,http://service-registry-b:8761/eureka/
+      defaultZone: http://service-registry:8761/eureka/
   instance:
     preferIpAddress: true

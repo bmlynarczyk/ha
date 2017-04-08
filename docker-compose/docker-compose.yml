@@ -5,28 +5,20 @@ networks:
     driver: bridge
 
 services:
-  service-registry-a:
+  service-registry:
     image: ha-service-registry:latest
-    container_name: service-registry-a
+    container_name: service-registry
+    cpuset: 0,1
     ports:
       - "8761:8761"
     networks:
       - my-net
     volumes:
-      - ./configs/service-registry-a.yml:/config/service-registry.yml
-  service-registry-b:
-    image: ha-service-registry:latest
-    container_name: service-registry-b
-    ports:
-      - "8762:8761"
-    networks:
-      - my-net
-    volumes:
-      - ./configs/service-registry-b.yml:/config/service-registry.yml
-
+      - ./configs/service-registry.yml:/config/service-registry.yml
   service-a:
     image: ha-service:latest
     container_name: service-a
+    cpuset: 2,3
     networks:
       - my-net
     volumes:
@@ -34,25 +26,18 @@ services:
   service-b:
     image: ha-service:latest
     container_name: service-b
+    cpuset: 4,5
     networks:
       - my-net
     volumes:
       - ./configs/service.yml:/config/service.yml
-  gateway-a:
+  gateway:
     image: ha-gateway:latest
-    container_name: gateway-a
+    container_name: gateway
+    cpuset: 6,7
     networks:
       - my-net
     ports:
       - "8080:8080"
-    volumes:
-      - ./configs/gateway.yml:/config/gateway.yml
-  gateway-b:
-    image: ha-gateway:latest
-    container_name: gateway-b
-    ports:
-      - "8081:8080"
-    networks:
-      - my-net
     volumes:
       - ./configs/gateway.yml:/config/gateway.yml
