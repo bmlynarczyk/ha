@@ -1,0 +1,47 @@
+version: "2"
+
+networks:
+  my-net:
+    driver: bridge
+
+services:
+  service-registry:
+    image: ha-service-registry:latest
+    container_name: service-registry
+    cpuset: 0,1
+    mem_limit: 2g
+    ports:
+      - "8761:8761"
+    networks:
+      - my-net
+    volumes:
+      - ./configs/service-registry.yml:/config/service-registry.yml
+  service-a:
+    image: ha-service:latest
+    container_name: service-a
+    cpuset: 2,3
+    mem_limit: 3g
+    networks:
+      - my-net
+    volumes:
+      - ./configs/service.yml:/config/service.yml
+  service-b:
+    image: ha-service:latest
+    container_name: service-b
+    cpuset: 4,5
+    mem_limit: 3g
+    networks:
+      - my-net
+    volumes:
+      - ./configs/service.yml:/config/service.yml
+  gateway:
+    image: ha-gateway:latest
+    container_name: gateway
+    cpuset: 6,7
+    mem_limit: 5g
+    networks:
+      - my-net
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./configs/gateway.yml:/config/gateway.yml

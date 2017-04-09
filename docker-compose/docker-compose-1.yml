@@ -9,15 +9,17 @@ services:
     image: ha-service-registry:latest
     container_name: service-registry
     cpuset: 0,1
+    mem_limit: 2g
     ports:
       - "8761:8761"
     networks:
       - my-net
     volumes:
       - ./configs/service-registry.yml:/config/service-registry.yml
-  service:
+  service-a:
     image: ha-service:latest
-    cpuset: 2,3,4,5
+    cpuset: 2,3
+    mem_limit: 3g
     networks:
       - my-net
     volumes:
@@ -26,6 +28,7 @@ services:
     image: ha-gateway:latest
     container_name: gateway
     cpuset: 6,7
+    mem_limit: 5g
     networks:
       - my-net
     ports:

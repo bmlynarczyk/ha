@@ -49,6 +49,11 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>de.malkusch.validation</groupId>
+			<artifactId>validation</artifactId>
+			<version>0.3.0</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
