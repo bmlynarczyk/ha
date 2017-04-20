@@ -10,7 +10,7 @@ import javax.validation.Valid;
 public class TransferController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/send")
-    public void send(@RequestBody @Valid SendDomesticTransferCommand transferCommand){
+    public void send(@RequestBody @Valid SendTransferCommand transferCommand){
         log.info("sending transfer {}", transferCommand);
     }
 

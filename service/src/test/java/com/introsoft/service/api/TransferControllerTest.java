@@ -23,7 +23,7 @@ public class TransferControllerTest {
     @Test
     public void send_transfer_should_fail_on_null_in_amount() {
         //given
-        SendDomesticTransferCommand request = new SendDomesticTransferCommand();
+        SendTransferCommand request = new SendTransferCommand();
         //when
         ResponseEntity<String> responseEntity = restTemplate.postForEntity("/send", request, String.class);
         //then
@@ -33,8 +33,8 @@ public class TransferControllerTest {
     @Test
     public void send_transfer_should_fail_on_invalid_iban_in_beneficiary_account() {
         //given
-        SendDomesticTransferCommand request = new SendDomesticTransferCommand();
-        request.setAmount(100L);
+        SendTransferCommand request = new SendTransferCommand();
+        request.setAmount("100");
         request.setTitle("title");
         request.setAccountingDate(new Date());
         request.setBeneficiaryAccount("PL1911609588468926048300390");

@@ -18,6 +18,7 @@ services:
       - ./configs/service-registry.yml:/config/service-registry.yml
   service-a:
     image: ha-service:latest
+    container_name: service-a
     cpuset: 2,3
     mem_limit: 3g
     networks:

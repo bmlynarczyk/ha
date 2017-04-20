@@ -12,11 +12,11 @@ import java.util.Date;
 
 @Data
 @ToString
-public class SendDomesticTransferCommand {
+public class SendTransferCommand {
 
-    @NotNull
+    @NotEmpty
     @Min(value = 1)
-    private Long amount;
+    private String amount;
 
     @NotEmpty
     private String title;
